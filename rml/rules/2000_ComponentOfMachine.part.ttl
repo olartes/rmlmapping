@@ -1,0 +1,29 @@
+# ############################################################################ #
+#                             MachineToolToComponent
+# ############################################################################ #
+
+<#ComponentOfMachineToolMapping> a rr:TriplesMap;
+  rml:logicalSource [
+    rml:source "__MTOOLS_SOURCE__";
+    rml:referenceFormulation ql:CSV
+  ];
+
+  rr:subjectMap [
+    rr:template "http://www.example.com/Component/{CID2}";
+    rr:class mtcfg:Component;
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate skos:member;
+    rr:objectMap [
+      rr:parentTriplesMap <#ComponentOfComponentMapping>;
+      rr:joinCondition [
+        rr:child "CID2";
+        rr:parent "CID1";
+      ];
+    ]
+  ];
+
+.
+
+# /MachineToolToComponent

@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "mechatroner.rainbow-csv",
+    "ms-toolsai.jupyter",
+    "ms-python.isort",
+    "ms-python.python",
+    "rdfox.rdfox-rdf"
+  ]
+}

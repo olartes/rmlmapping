@@ -1,0 +1,61 @@
+# ############################################################################ #
+#                             Category
+# ############################################################################ #
+
+<#CategoryMapping> a rr:TriplesMap;
+  rml:logicalSource [
+    rml:source "__CLASSES_CSV__";
+    rml:referenceFormulation ql:CSV
+  ];
+
+  rr:subjectMap [
+    rr:template "http://www.example.com/category/{CLASSID}";
+    rr:class mtcfg:MachineTool;
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate dcterms:identifier;
+    rr:objectMap [
+      rml:reference "CLASSID";
+      rr:datatype xsd:string
+    ]
+  ];
+
+  # https://sites.psu.edu/symbolcodes/web/langtag/
+  rr:predicateObjectMap [
+    rr:predicate rdfs:label;
+    rr:objectMap [
+      rml:reference "NAME"; #TODO change in NAME_IT
+      rr:language "it-IT";
+    ];
+  ];
+  # TODO map english name
+
+
+
+
+  rr:predicateObjectMap [
+    rr:predicate skos:topConceptOf;
+    rr:objectMap [
+      rr:parentTriplesMap <#MachineToolMapping>;
+      rr:joinCondition [
+        rr:child "CLASSID";
+        rr:parent "CEL_INVENTCLASSAID1";
+      ];
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate skos:topConceptOf;
+    rr:objectMap [
+      rr:parentTriplesMap <#ComponentMapping>;
+      rr:joinCondition [
+        rr:child "CLASSID";
+        rr:parent "CEL_INVENTCLASSAID2";
+      ];
+    ]
+  ];
+
+.
+
+# /Category
