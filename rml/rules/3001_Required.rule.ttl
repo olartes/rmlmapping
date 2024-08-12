@@ -1,16 +1,26 @@
 # ############################################################################ #
-#                             ComponentOfComponent
+#                             Required
 # ############################################################################ #
 
-<#ComponentOfComponentMapping> a rr:TriplesMap;
+<#RequiredMapping> a rr:TriplesMap;
   rml:logicalSource [
-    rml:source "__COMPONENT_SOURCE__";
+    rml:source "__REQUIRED_SOURCE__";
     rml:referenceFormulation ql:CSV
   ];
 
   rr:subjectMap [
-    rr:template "http://www.example.com/Component/{CID1}";
-    rr:class mtcfg:Component;
+    rr:template "http://www.example.com/{CLASSNAME1}/{CID1}";
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate skos:member;
+    rr:objectMap [
+      rr:parentTriplesMap <#MachineToolMapping>;
+      rr:joinCondition [
+        rr:parent "CID";
+        rr:child "CID2";
+      ];
+    ]
   ];
 
   rr:predicateObjectMap [
@@ -18,12 +28,12 @@
     rr:objectMap [
       rr:parentTriplesMap <#ComponentMapping>;
       rr:joinCondition [
+        rr:parent "CID";
         rr:child "CID2";
-        rr:parent "CID2";
       ];
     ]
   ];
 
 .
 
-# /ComponentToComponent
+# /Required

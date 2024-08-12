@@ -48,15 +48,13 @@
   # TODO map english name
 
 
-
-
   rr:predicateObjectMap [
     rr:predicate skos:topConceptOf;
     rr:objectMap [
       rr:parentTriplesMap <#MachineToolMapping>;
       rr:joinCondition [
         rr:child "CLASSID";
-        rr:parent "CEL_INVENTCLASSAID1";
+        rr:parent "CEL_INVENTCLASSAID";
       ];
     ]
   ];
@@ -67,7 +65,7 @@
       rr:parentTriplesMap <#ComponentMapping>;
       rr:joinCondition [
         rr:child "CLASSID";
-        rr:parent "CEL_INVENTCLASSAID2";
+        rr:parent "CEL_INVENTCLASSAID";
       ];
     ]
   ];
@@ -83,127 +81,69 @@
 <#MachineToolMapping> a rr:TriplesMap;
   rml:logicalSource [
     rml:source "__MTOOLS_SOURCE__";
-    rml:referenceFormulation ql:CSV
+    rml:referenceFormulation ql:CSV;
   ];
 
   rr:subjectMap [
-    rr:template "http://www.example.com/MachineTool/{CID1}";
+    rr:template "http://www.example.com/MachineTool/{CID}";
     rr:class mtcfg:MachineTool;
   ];
 
-  rr:predicateObjectMap [
-    rr:predicate dcterms:identifier;
-    rr:objectMap [
-      rml:reference "CID1";
-      rr:datatype xsd:string
-    ]
+  
+rr:predicateObjectMap [
+  rr:predicate dcterms:identifier;
+  rr:objectMap [
+    rml:reference "CID";
+    rr:datatype xsd:string
+  ]
+];
+
+# https://sites.psu.edu/symbolcodes/web/langtag/
+rr:predicateObjectMap [
+  rr:predicate rdfs:label;
+  rr:objectMap [
+    rml:reference "itm_name"; #TODO change in itm1_name_it
+    rr:language "it-IT";
   ];
+];
+# rr:predicateObjectMap [
+#   rr:predicate rdfs:label;
+#   rr:objectMap [
+#     rml:reference "itm1_name_en";
+#     rr:language "en-US";
+#   ];
+# ];
 
-  # https://sites.psu.edu/symbolcodes/web/langtag/
-  rr:predicateObjectMap [
-    rr:predicate rdfs:label;
-    rr:objectMap [
-      rml:reference "itm_name1"; #TODO change in itm1_name_it
-      rr:language "it-IT";
-    ];
-  ];
-  # rr:predicateObjectMap [
-  #   rr:predicate rdfs:label;
-  #   rr:objectMap [
-  #     rml:reference "itm1_name_en";
-  #     rr:language "en-US";
-  #   ];
-  # ];
+# TODO map the description
 
-  # TODO map the description
+# TODO map the price
 
-  # TODO map the price
+# rr:predicateObjectMap [
+#   rr:predicate skos:hasTopConcept;
+#   rr:objectMap [
+#     rr:parentTriplesMap <#CategoryMapping>;
+#     rr:joinCondition [
+#       rr:child "CEL_INVENTCLASSAID";
+#       rr:parent "CLASSID";
+#     ];
+#   ]
+# ];
 
-  rr:predicateObjectMap [
-    rr:predicate skos:hasTopConcept;
-    rr:objectMap [
-      rr:parentTriplesMap <#CategoryMapping>;
-      rr:joinCondition [
-        rr:child "CEL_INVENTCLASSAID1";
-        rr:parent "CLASSID";
-      ];
-    ]
-  ];
+# rr:predicateObjectMap [
+#   rr:predicate skos:member;
+#   rr:objectMap [
+#     rr:parentTriplesMap <#ComponentOfMachineToolMapping>;
+#     rr:joinCondition [
+#       rr:child "CID2";
+#       rr:parent "CID2";
+#     ];
+#   ]
+# ];
 
-  rr:predicateObjectMap [
-    rr:predicate skos:member;
-    rr:objectMap [
-      rr:parentTriplesMap <#ComponentOfMachineToolMapping>;
-      rr:joinCondition [
-        rr:child "CID2";
-        rr:parent "CID2";
-      ];
-    ]
-  ];
 
 .
 
 # /MachineTool
-
-# ############################################################################ #
-#                             MachineToolToComponent
-# ############################################################################ #
-
-<#ComponentOfMachineToolMapping> a rr:TriplesMap;
-  rml:logicalSource [
-    rml:source "__MTOOLS_SOURCE__";
-    rml:referenceFormulation ql:CSV
-  ];
-
-  rr:subjectMap [
-    rr:template "http://www.example.com/Component/{CID2}";
-    rr:class mtcfg:Component;
-  ];
-
-  rr:predicateObjectMap [
-    rr:predicate skos:member;
-    rr:objectMap [
-      rr:parentTriplesMap <#ComponentOfComponentMapping>;
-      rr:joinCondition [
-        rr:child "CID2";
-        rr:parent "CID1";
-      ];
-    ]
-  ];
-
-.
-
-# /MachineToolToComponent
-
-# ############################################################################ #
-#                             ComponentOfComponent
-# ############################################################################ #
-
-<#ComponentOfComponentMapping> a rr:TriplesMap;
-  rml:logicalSource [
-    rml:source "__COMPONENT_SOURCE__";
-    rml:referenceFormulation ql:CSV
-  ];
-
-  rr:subjectMap [
-    rr:template "http://www.example.com/Component/{CID1}";
-    rr:class mtcfg:Component;
-  ];
-
-  rr:predicateObjectMap [
-    rr:predicate skos:member;
-    rr:objectMap [
-      rr:parentTriplesMap <#ComponentMapping>;
-      rr:joinCondition [
-        rr:child "CID2";
-        rr:parent "CID2";
-      ];
-    ]
-  ];
-
-.
-
-# /ComponentToComponent
 
 # ############################################################################ #
 #                             Component
@@ -216,50 +156,103 @@
   ];
 
   rr:subjectMap [
-    rr:template "http://www.example.com/Component/{CID2}";
+    rr:template "http://www.example.com/Component/{CID}";
     rr:class mtcfg:Component;
   ];
 
+  
+rr:predicateObjectMap [
+  rr:predicate dcterms:identifier;
+  rr:objectMap [
+    rml:reference "CID";
+    rr:datatype xsd:string
+  ]
+];
+
+# https://sites.psu.edu/symbolcodes/web/langtag/
+rr:predicateObjectMap [
+  rr:predicate rdfs:label;
+  rr:objectMap [
+    rml:reference "itm_name"; #TODO change in itm1_name_it
+    rr:language "it-IT";
+  ];
+];
+# rr:predicateObjectMap [
+#   rr:predicate rdfs:label;
+#   rr:objectMap [
+#     rml:reference "itm1_name_en";
+#     rr:language "en-US";
+#   ];
+# ];
+
+# TODO map the description
+
+# TODO map the price
+
+# rr:predicateObjectMap [
+#   rr:predicate skos:hasTopConcept;
+#   rr:objectMap [
+#     rr:parentTriplesMap <#CategoryMapping>;
+#     rr:joinCondition [
+#       rr:child "CEL_INVENTCLASSAID";
+#       rr:parent "CLASSID";
+#     ];
+#   ]
+# ];
+
+# rr:predicateObjectMap [
+#   rr:predicate skos:member;
+#   rr:objectMap [
+#     rr:parentTriplesMap <#ComponentOfMachineToolMapping>;
+#     rr:joinCondition [
+#       rr:child "CID2";
+#       rr:parent "CID2";
+#     ];
+#   ]
+# ];
+
+
+.
+
+# /Component
+
+# ############################################################################ #
+#                             Required
+# ############################################################################ #
+
+<#RequiredMapping> a rr:TriplesMap;
+  rml:logicalSource [
+    rml:source "__REQUIRED_SOURCE__";
+    rml:referenceFormulation ql:CSV
+  ];
+
+  rr:subjectMap [
+    rr:template "http://www.example.com/{CLASSNAME1}/{CID1}";
+  ];
+
   rr:predicateObjectMap [
-    rr:predicate dcterms:identifier;
+    rr:predicate skos:member;
     rr:objectMap [
-      rml:reference "CID2";
-      rr:datatype xsd:string
+      rr:parentTriplesMap <#MachineToolMapping>;
+      rr:joinCondition [
+        rr:parent "CID";
+        rr:child "CID2";
+      ];
     ]
   ];
 
-  # https://sites.psu.edu/symbolcodes/web/langtag/
   rr:predicateObjectMap [
-    rr:predicate rdfs:label;
+    rr:predicate skos:member;
     rr:objectMap [
-      rml:reference "itm_name2"; #TODO change in itm2_name_it
-      rr:language "it-IT";
-    ];
-  ];
-  # rr:predicateObjectMap [
-  #   rr:predicate rdfs:label;
-  #   rr:objectMap [
-  #     rml:reference "itm2_name_en";
-  #     rr:language "en-US";
-  #   ];
-  # ];
-
-  # TODO map the description
-
-  # TODO map the price
-
-  rr:predicateObjectMap [
-    rr:predicate skos:hasTopConcept;
-    rr:objectMap [
-      rr:parentTriplesMap <#CategoryMapping>;
+      rr:parentTriplesMap <#ComponentMapping>;
       rr:joinCondition [
-        rr:child "CEL_INVENTCLASSAID2";
-        rr:parent "CLASSID";
+        rr:parent "CID";
+        rr:child "CID2";
       ];
     ]
   ];
 
 .
 
-# /Component
+# /Required
 

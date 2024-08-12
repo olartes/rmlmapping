@@ -32,15 +32,13 @@
   # TODO map english name
 
 
-
-
   rr:predicateObjectMap [
     rr:predicate skos:topConceptOf;
     rr:objectMap [
       rr:parentTriplesMap <#MachineToolMapping>;
       rr:joinCondition [
         rr:child "CLASSID";
-        rr:parent "CEL_INVENTCLASSAID1";
+        rr:parent "CEL_INVENTCLASSAID";
       ];
     ]
   ];
@@ -51,7 +49,7 @@
       rr:parentTriplesMap <#ComponentMapping>;
       rr:joinCondition [
         rr:child "CLASSID";
-        rr:parent "CEL_INVENTCLASSAID2";
+        rr:parent "CEL_INVENTCLASSAID";
       ];
     ]
   ];
