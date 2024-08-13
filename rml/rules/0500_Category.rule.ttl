@@ -37,8 +37,8 @@
     rr:objectMap [
       rr:parentTriplesMap <#MachineToolMapping>;
       rr:joinCondition [
-        rr:child "CLASSID";
         rr:parent "CEL_INVENTCLASSAID";
+        rr:child "CLASSID";
       ];
     ]
   ];
@@ -48,8 +48,8 @@
     rr:objectMap [
       rr:parentTriplesMap <#ComponentMapping>;
       rr:joinCondition [
-        rr:child "CLASSID";
         rr:parent "CEL_INVENTCLASSAID";
+        rr:child "CLASSID";
       ];
     ]
   ];

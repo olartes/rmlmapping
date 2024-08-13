@@ -1,0 +1,10 @@
+rr:predicateObjectMap [
+  rr:predicate skos:hasTopConcept;
+  rr:objectMap [
+    rr:parentTriplesMap <#CategoryMapping>;
+    rr:joinCondition [
+      rr:child "CEL_INVENTCLASSAID";
+      rr:parent "CLASSID";
+    ];
+  ]
+];

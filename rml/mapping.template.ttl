@@ -53,8 +53,8 @@
     rr:objectMap [
       rr:parentTriplesMap <#MachineToolMapping>;
       rr:joinCondition [
-        rr:child "CLASSID";
         rr:parent "CEL_INVENTCLASSAID";
+        rr:child "CLASSID";
       ];
     ]
   ];
@@ -64,8 +64,8 @@
     rr:objectMap [
       rr:parentTriplesMap <#ComponentMapping>;
       rr:joinCondition [
-        rr:child "CLASSID";
         rr:parent "CEL_INVENTCLASSAID";
+        rr:child "CLASSID";
       ];
     ]
   ];
@@ -89,8 +89,18 @@
     rr:class mtcfg:MachineTool;
   ];
 
-  
-rr:predicateObjectMap [
+  rr:predicateObjectMap [
+  rr:predicate skos:hasTopConcept;
+  rr:objectMap [
+    rr:parentTriplesMap <#CategoryMapping>;
+    rr:joinCondition [
+      rr:child "CEL_INVENTCLASSAID";
+      rr:parent "CLASSID";
+    ];
+  ]
+];
+
+  rr:predicateObjectMap [
   rr:predicate dcterms:identifier;
   rr:objectMap [
     rml:reference "CID";
@@ -98,14 +108,8 @@ rr:predicateObjectMap [
   ]
 ];
 
-# https://sites.psu.edu/symbolcodes/web/langtag/
-rr:predicateObjectMap [
-  rr:predicate rdfs:label;
-  rr:objectMap [
-    rml:reference "itm_name"; #TODO change in itm1_name_it
-    rr:language "it-IT";
-  ];
-];
+# TODO map english name
+# @see https://sites.psu.edu/symbolcodes/web/langtag/
 # rr:predicateObjectMap [
 #   rr:predicate rdfs:label;
 #   rr:objectMap [
@@ -114,32 +118,18 @@ rr:predicateObjectMap [
 #   ];
 # ];
 
-# TODO map the description
+rr:predicateObjectMap [
+  rr:predicate rdfs:label;
+  rr:objectMap [
+    rml:reference "itm_name"; #TODO change in itm1_name_it
+    rr:language "it-IT";
+  ];
+];
+
+# TODO map english description
+# TODO map italian description
 
 # TODO map the price
-
-# rr:predicateObjectMap [
-#   rr:predicate skos:hasTopConcept;
-#   rr:objectMap [
-#     rr:parentTriplesMap <#CategoryMapping>;
-#     rr:joinCondition [
-#       rr:child "CEL_INVENTCLASSAID";
-#       rr:parent "CLASSID";
-#     ];
-#   ]
-# ];
-
-# rr:predicateObjectMap [
-#   rr:predicate skos:member;
-#   rr:objectMap [
-#     rr:parentTriplesMap <#ComponentOfMachineToolMapping>;
-#     rr:joinCondition [
-#       rr:child "CID2";
-#       rr:parent "CID2";
-#     ];
-#   ]
-# ];
-
 
 .
 
@@ -160,8 +150,18 @@ rr:predicateObjectMap [
     rr:class mtcfg:Component;
   ];
 
-  
-rr:predicateObjectMap [
+  rr:predicateObjectMap [
+  rr:predicate skos:hasTopConcept;
+  rr:objectMap [
+    rr:parentTriplesMap <#CategoryMapping>;
+    rr:joinCondition [
+      rr:child "CEL_INVENTCLASSAID";
+      rr:parent "CLASSID";
+    ];
+  ]
+];
+
+  rr:predicateObjectMap [
   rr:predicate dcterms:identifier;
   rr:objectMap [
     rml:reference "CID";
@@ -169,14 +169,8 @@ rr:predicateObjectMap [
   ]
 ];
 
-# https://sites.psu.edu/symbolcodes/web/langtag/
-rr:predicateObjectMap [
-  rr:predicate rdfs:label;
-  rr:objectMap [
-    rml:reference "itm_name"; #TODO change in itm1_name_it
-    rr:language "it-IT";
-  ];
-];
+# TODO map english name
+# @see https://sites.psu.edu/symbolcodes/web/langtag/
 # rr:predicateObjectMap [
 #   rr:predicate rdfs:label;
 #   rr:objectMap [
@@ -185,32 +179,18 @@ rr:predicateObjectMap [
 #   ];
 # ];
 
-# TODO map the description
+rr:predicateObjectMap [
+  rr:predicate rdfs:label;
+  rr:objectMap [
+    rml:reference "itm_name"; #TODO change in itm1_name_it
+    rr:language "it-IT";
+  ];
+];
+
+# TODO map english description
+# TODO map italian description
 
 # TODO map the price
-
-# rr:predicateObjectMap [
-#   rr:predicate skos:hasTopConcept;
-#   rr:objectMap [
-#     rr:parentTriplesMap <#CategoryMapping>;
-#     rr:joinCondition [
-#       rr:child "CEL_INVENTCLASSAID";
-#       rr:parent "CLASSID";
-#     ];
-#   ]
-# ];
-
-# rr:predicateObjectMap [
-#   rr:predicate skos:member;
-#   rr:objectMap [
-#     rr:parentTriplesMap <#ComponentOfMachineToolMapping>;
-#     rr:joinCondition [
-#       rr:child "CID2";
-#       rr:parent "CID2";
-#     ];
-#   ]
-# ];
-
 
 .
 
@@ -231,7 +211,7 @@ rr:predicateObjectMap [
   ];
 
   rr:predicateObjectMap [
-    rr:predicate skos:member;
+    rr:predicate mtcfg:requires; # skos:member
     rr:objectMap [
       rr:parentTriplesMap <#MachineToolMapping>;
       rr:joinCondition [
@@ -242,7 +222,7 @@ rr:predicateObjectMap [
   ];
 
   rr:predicateObjectMap [
-    rr:predicate skos:member;
+    rr:predicate mtcfg:requires; # skos:member
     rr:objectMap [
       rr:parentTriplesMap <#ComponentMapping>;
       rr:joinCondition [
@@ -255,4 +235,84 @@ rr:predicateObjectMap [
 .
 
 # /Required
+
+# ############################################################################ #
+#                             Recommended
+# ############################################################################ #
+
+<#RecommendedMapping> a rr:TriplesMap;
+  rml:logicalSource [
+    rml:source "__RECOMMENDED_SOURCE__";
+    rml:referenceFormulation ql:CSV
+  ];
+
+  rr:subjectMap [
+    rr:template "http://www.example.com/{CLASSNAME1}/{CID1}";
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate mtcfg:recommendes; # skos:member
+    rr:objectMap [
+      rr:parentTriplesMap <#MachineToolMapping>;
+      rr:joinCondition [
+        rr:parent "CID";
+        rr:child "CID2";
+      ];
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate mtcfg:requires; # skos:member
+    rr:objectMap [
+      rr:parentTriplesMap <#ComponentMapping>;
+      rr:joinCondition [
+        rr:parent "CID";
+        rr:child "CID2";
+      ];
+    ]
+  ];
+
+.
+
+# /Recommended
+
+# ############################################################################ #
+#                             Incompatible
+# ############################################################################ #
+
+<#IncompatibleMapping> a rr:TriplesMap;
+  rml:logicalSource [
+    rml:source "__INCOMPATIBLE_SOURCE__";
+    rml:referenceFormulation ql:CSV
+  ];
+
+  rr:subjectMap [
+    rr:template "http://www.example.com/{CLASSNAME1}/{CID1}";
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate mtcfg:incompatible; # skos:member
+    rr:objectMap [
+      rr:parentTriplesMap <#MachineToolMapping>;
+      rr:joinCondition [
+        rr:parent "CID";
+        rr:child "CID2";
+      ];
+    ]
+  ];
+
+  rr:predicateObjectMap [
+    rr:predicate mtcfg:requires; # skos:member
+    rr:objectMap [
+      rr:parentTriplesMap <#ComponentMapping>;
+      rr:joinCondition [
+        rr:parent "CID";
+        rr:child "CID2";
+      ];
+    ]
+  ];
+
+.
+
+# /Incompatible
 

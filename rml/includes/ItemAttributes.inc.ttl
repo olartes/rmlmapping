@@ -1,4 +1,3 @@
-
 rr:predicateObjectMap [
   rr:predicate dcterms:identifier;
   rr:objectMap [
@@ -7,14 +6,8 @@ rr:predicateObjectMap [
   ]
 ];
 
-# https://sites.psu.edu/symbolcodes/web/langtag/
-rr:predicateObjectMap [
-  rr:predicate rdfs:label;
-  rr:objectMap [
-    rml:reference "itm_name"; #TODO change in itm1_name_it
-    rr:language "it-IT";
-  ];
-];
+# TODO map english name
+# @see https://sites.psu.edu/symbolcodes/web/langtag/
 # rr:predicateObjectMap [
 #   rr:predicate rdfs:label;
 #   rr:objectMap [
@@ -23,28 +16,15 @@ rr:predicateObjectMap [
 #   ];
 # ];
 
-# TODO map the description
+rr:predicateObjectMap [
+  rr:predicate rdfs:label;
+  rr:objectMap [
+    rml:reference "itm_name"; #TODO change in itm1_name_it
+    rr:language "it-IT";
+  ];
+];
+
+# TODO map english description
+# TODO map italian description
 
 # TODO map the price
-
-# rr:predicateObjectMap [
-#   rr:predicate skos:hasTopConcept;
-#   rr:objectMap [
-#     rr:parentTriplesMap <#CategoryMapping>;
-#     rr:joinCondition [
-#       rr:child "CEL_INVENTCLASSAID";
-#       rr:parent "CLASSID";
-#     ];
-#   ]
-# ];
-
-# rr:predicateObjectMap [
-#   rr:predicate skos:member;
-#   rr:objectMap [
-#     rr:parentTriplesMap <#ComponentOfMachineToolMapping>;
-#     rr:joinCondition [
-#       rr:child "CID2";
-#       rr:parent "CID2";
-#     ];
-#   ]
-# ];

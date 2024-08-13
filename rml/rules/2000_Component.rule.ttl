@@ -13,7 +13,9 @@
     rr:class mtcfg:Component;
   ];
 
-  __ItemAttributes.inc__
+  ###__ItemCategory.inc__
+
+  ###__ItemAttributes.inc__
 
 .
 

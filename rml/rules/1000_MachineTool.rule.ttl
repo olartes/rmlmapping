@@ -13,7 +13,9 @@
     rr:class mtcfg:MachineTool;
   ];
 
-  __ItemAttributes.inc__
+  ###__ItemCategory.inc__
+
+  ###__ItemAttributes.inc__
 
 .
 

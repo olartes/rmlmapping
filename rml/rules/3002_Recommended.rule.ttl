@@ -1,10 +1,10 @@
 # ############################################################################ #
-#                             Required
+#                             Recommended
 # ############################################################################ #
 
-<#RequiredMapping> a rr:TriplesMap;
+<#RecommendedMapping> a rr:TriplesMap;
   rml:logicalSource [
-    rml:source "__REQUIRED_SOURCE__";
+    rml:source "__RECOMMENDED_SOURCE__";
     rml:referenceFormulation ql:CSV
   ];
 
@@ -13,7 +13,7 @@
   ];
 
   rr:predicateObjectMap [
-    rr:predicate mtcfg:requires; # skos:member
+    rr:predicate mtcfg:recommendes; # skos:member
     rr:objectMap [
       rr:parentTriplesMap <#MachineToolMapping>;
       rr:joinCondition [
@@ -36,4 +36,4 @@
 
 .
 
-# /Required
+# /Recommended
