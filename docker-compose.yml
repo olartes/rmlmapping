@@ -1,1 +1,15 @@
 services:
+
+  fuseki:
+    image: stain/jena-fuseki
+    environment:
+      - ADMIN_PASSWORD=admin
+      - TDB=2
+      - FUSEKI_DATASET_1=mtcfg # TODO setup a proper name
+    ports:
+      - "3030:3030"
+    volumes:
+      - fuseki_data:/fuseki
+
+volumes:
+  fuseki_data:
